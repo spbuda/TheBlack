@@ -11,5 +11,6 @@ public class CommitTestScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		// Testing this shiznizzle
+		// Another Test
 	}
 }
