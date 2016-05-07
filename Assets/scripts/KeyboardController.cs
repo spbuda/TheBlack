@@ -6,9 +6,9 @@ public class KeyboardController : MonoBehaviour {
 	public float thrust = 1.2F;
 	public float rotationSpeed = 10.0F;
 
-	private Rigidbody2D rb2d;
+	private Rigidbody body;
 	void Start() {
-		rb2d = GetComponent<Rigidbody2D> ();
+		body = GetComponent<Rigidbody> ();
 	}
 
 	void FixedUpdate() {
@@ -16,6 +16,6 @@ public class KeyboardController : MonoBehaviour {
 		float moveVertical = Input.GetAxis ("Vertical") * speed * thrust;
 
 		Vector2 movement = new Vector2 (moveHorizontal, moveVertical);
-		rb2d.AddForce (movement);
+		body.AddForce (movement);
 	}
 }
