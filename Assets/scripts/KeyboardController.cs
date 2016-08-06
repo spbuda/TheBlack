@@ -9,7 +9,6 @@ public class KeyboardController : MonoBehaviour {
 	private Rigidbody body;
 	void Start() {
 		body = GetComponent<Rigidbody> ();
-		body.constraints = RigidbodyConstraints.FreezePositionZ;
 	}
 
 	void FixedUpdate() {
