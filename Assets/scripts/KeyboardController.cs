@@ -9,6 +9,7 @@ public class KeyboardController : MonoBehaviour {
 	private Rigidbody body;
 	void Start() {
 		body = GetComponent<Rigidbody> ();
+		body.constraints = RigidbodyConstraints.FreezePositionZ;
 	}
 
 	void FixedUpdate() {
@@ -16,6 +17,7 @@ public class KeyboardController : MonoBehaviour {
 		float moveVertical = Input.GetAxis ("Vertical") * speed * thrust;
 
 		Vector2 movement = new Vector2 (moveHorizontal, moveVertical);
-		body.AddForce (movement);
+		body.AddForce(movement);
 	}
 }
+
