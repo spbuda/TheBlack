@@ -6,7 +6,7 @@ public class MeshGenerator : MonoBehaviour {
 
 	public SquareGrid squareGrid;
 	public MeshFilter walls;
-	public float wallHeight = 100;
+	public float floorWidth = 10;
 
 	List<Vector3> vertices;
 	List<int> triangles;
@@ -53,8 +53,8 @@ public class MeshGenerator : MonoBehaviour {
 				int startIndex = wallVertices.Count;
 				wallVertices.Add(vertices[outline[i]]); //left
 				wallVertices.Add(vertices[outline[i+1]]); //right
-				wallVertices.Add(vertices[outline[i]] - Vector3.back * wallHeight); //bottom left
-				wallVertices.Add(vertices[outline[i+1]] - Vector3.back * wallHeight); //bottom right
+				wallVertices.Add(vertices[outline[i]] - Vector3.back * floorWidth); //bottom left
+				wallVertices.Add(vertices[outline[i+1]] - Vector3.back * floorWidth); //bottom right
 
 				wallTriangles.Add(startIndex + 0);
 				wallTriangles.Add(startIndex + 2);

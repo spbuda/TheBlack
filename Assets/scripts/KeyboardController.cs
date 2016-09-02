@@ -15,7 +15,13 @@ public class KeyboardController : MonoBehaviour {
 		float moveHorizontal = Input.GetAxis ("Horizontal");
 		float moveVertical = Input.GetAxis ("Vertical") * thrust;
 
+
 		Vector2 movement = new Vector2 (moveHorizontal, moveVertical) * speed;
 		body.AddForce (movement);
+
+		//Vector2 movement = new Vector2 (moveHorizontal, moveVertical);
+		//body.AddForce(movement);
+
 	}
 }
+
