@@ -12,9 +12,15 @@ public class PlayerController : MonoBehaviour {
     public Boundary boundary;
     public float zClamp;
     public float jumpPower;
+    public float secondJumpMod;
     public float maxMoveSpeed;
+    public float groundRayLength = 0;
 
     private Rigidbody rb;
+    private Vector3 groundRay = new Vector3(0, -1, 0);
+    private bool grounded;
+    private bool jumpTwo;
+    
 
     void Start () {
         rb = GetComponent<Rigidbody>();
@@ -34,12 +40,33 @@ public class PlayerController : MonoBehaviour {
             rb.velocity = rb.velocity + movement * speed;
         }
 
+        grounded = false;
+
+        if (Physics.Raycast(rb.position, groundRay, groundRayLength))
+        {
+            grounded = true;
+            jumpTwo = true;
+
+        }
 
         if (jump)
         {
-            Vector3 momentum = rb.velocity;
-            Vector3 jumpOne = new Vector3(momentum.x, jumpPower, momentum.z);
-            rb.velocity = jumpOne;
+            if (grounded)
+            {
+                Vector3 momentum = rb.velocity;
+                Vector3 jumpOne = new Vector3(momentum.x, jumpPower, momentum.z);
+                rb.velocity = jumpOne;
+            }
+            else
+            {
+                if (jumpTwo)
+                {
+                    jumpTwo = false;
+                    Vector3 momentum = rb.velocity;
+                    Vector3 jumpAgain = new Vector3(momentum.x, jumpPower * secondJumpMod, momentum.z);
+                    rb.velocity = jumpAgain;
+                }
+            }
         }
 
         rb.position = new Vector3(
